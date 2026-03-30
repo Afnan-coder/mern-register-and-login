@@ -39,9 +39,7 @@ export const loginController = async (req, res) => {
         const { email, password } = req.body
         const user = await userModel.findOne({ email })
 
-        if(user){
-
-            
+        if(user){           
             if (user.password === password) {
                 return res.status(200).json({ success: true, user })
             } else {
