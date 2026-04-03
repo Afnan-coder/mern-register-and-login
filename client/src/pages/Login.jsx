@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 
 const Login = () => {
+
+    const navigate = useNavigate()
 
     const [userData, setUserData] = useState({
         email: '',
@@ -21,6 +24,7 @@ const Login = () => {
     const onSubmitHandler = (e)=>{
         e.preventDefault()
         console.log(userData)
+        navigate('/')
     }
 
     return (

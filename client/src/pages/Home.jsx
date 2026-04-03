@@ -7,7 +7,7 @@ const Home = () => {
 
   return (
     <div>
-      {count}
+      I am home page
     </div>
   )
 }
