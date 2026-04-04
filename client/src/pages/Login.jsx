@@ -1,6 +1,8 @@
+import axios from 'axios'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
+import { toast, ToastContainer } from 'react-toastify'
 
 
 const Login = () => {
@@ -21,10 +23,24 @@ const Login = () => {
 
     }
 
-    const onSubmitHandler = (e)=>{
+    const onSubmitHandler = async (e)=>{
         e.preventDefault()
-        console.log(userData)
-        navigate('/')
+        
+        try {
+
+            const {data} = await axios.post('http://localhost:3000/api/login', userData)
+
+            if(data.success){
+                toast.success('Login Success!')
+                navigate('/')
+            } else {
+                toast.error(data.message)
+            }
+            
+        } catch (error) {
+            toast.error(error.message)
+        }
+
     }
 
     return (
@@ -60,7 +76,9 @@ const Login = () => {
                         <Link className='text-blue-600 underline ml-2' to={'/register'}>register</Link>
                     </div>
                 </div>
+                <ToastContainer/>
             </form>
+            
         </div>
     )
 }
