@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
-
+import axios from 'axios'
+import { ToastContainer, toast } from 'react-toastify'
 
 const Register = () => {
 
-  const navigate = useNavigate()
+    const navigate = useNavigate()
 
     const [userData, setUserData] = useState({
         name: '',
@@ -14,18 +15,32 @@ const Register = () => {
     })
 
     const handleChange = (e) => {
-        const {name, value} = e.target;
+        const { name, value } = e.target;
         setUserData({
             ...userData,
             [name]: value
-            })
+        })
 
     }
 
-    const onSubmitHandler = (e)=>{
+    const onSubmitHandler = async (e) => {
         e.preventDefault()
         console.log(userData)
-        navigate('/login')
+        try {
+
+            const { data } = await axios.post('http://localhost:3000/api/register', userData)
+
+            if (data.success) {
+                toast.success("Data submitted!")
+                navigate('/login')
+            } else {
+                toast.error(data.message)
+            }
+
+        } catch (error) {
+            toast.error(error.message)
+        }
+
     }
 
     return (
@@ -76,6 +91,7 @@ const Register = () => {
                     </div>
                 </div>
             </form>
+            <ToastContainer />
         </div>
     )
 }
