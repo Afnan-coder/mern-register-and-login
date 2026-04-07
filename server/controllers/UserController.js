@@ -1,7 +1,8 @@
 import userModel from "../models/User.js"
+import bcrypt from 'bcrypt'
 
 export const registerController = async (req, res) => {
-    try { 
+    try {
 
         const { name, email, password } = req.body
 
@@ -20,14 +21,16 @@ export const registerController = async (req, res) => {
                 password
             })
 
+            newUser.password = await bcrypt.hash(password, 10)
+
             await newUser.save()
-            res.json({ success: true, newUser })
+            res.status(201).json({ success: true, message: 'Register successfull' })
 
         }
 
 
     } catch (error) {
-        res.json({ success: false, message: error.message })
+        res.status(500).json({ success: false, message: error.message })
     }
 
 }
@@ -39,15 +42,15 @@ export const loginController = async (req, res) => {
         const { email, password } = req.body
         const user = await userModel.findOne({ email })
 
-        if(user){           
-            if (user.password === password) {
+        if (user) {
+            if (bcrypt.compare(user.password === password)) {
                 return res.status(200).json({ success: true, user })
             } else {
                 return res.status(401).json({ success: false, message: "Password is wrong" })
             }
-            
+
         } else {
-            return res.json({success: false, message:'User not found'})
+            return res.json({ success: false, message: 'Auth failed email or password is wrong' })
         }
 
     } catch (error) {
