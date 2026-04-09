@@ -4,6 +4,8 @@ const router = express.Router()
 
 router.get('/products', ensureAuthenticated, (req, res)=>{ 
 
+    console.log('------- Loged in User --------', req.user)
+
     res.json([
         {
             product: "Mobile",
