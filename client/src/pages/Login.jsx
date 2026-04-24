@@ -1,8 +1,9 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
+import { AppContext } from '../context/AppContext'
 
 
 const Login = () => {
@@ -32,6 +33,7 @@ const Login = () => {
 
             if(data.success){
                 toast.success('Login Success!')
+                localStorage.setItem('token', data.jwtToken)
                 navigate('/')
             } else {
                 toast.error(data.message)

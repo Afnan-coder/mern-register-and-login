@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AppContext } from "../context/AppContext";
 
 const Home = () => {
+
+  const {token, setToken, userName} = useContext(AppContext)
+
   return (
     <div className="min-h-screen bg-gray-100">
 
       {/* Navbar */}
       <div className="bg-white shadow-md px-6 py-4 flex justify-between items-center">
-        <h1 className="text-xl font-bold text-gray-800">My App</h1>
+        <h1 className="text-xl font-bold text-gray-800">Welcome! {userName}</h1>
         <button className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">
           Logout
         </button>

@@ -1,6 +1,6 @@
 
 import jwt from 'jsonwebtoken'
-
+  
 export const ensureAuthenticated = (req, res, next) => {
     const token = req.headers['authorization']
     if (!token) {

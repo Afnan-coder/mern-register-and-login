@@ -1,9 +1,9 @@
 import express from "express" 
 import cors from 'cors'
 import userRoutes from './routes/UserRoute.js' 
-import productRoutes from './routes/ProductRoute.js' 
+import productRoutes from './routes/ProductRoute.js'  
 import connectDB from "./config/db.js"
-import dotenv from 'dotenv'
+import dotenv from 'dotenv' 
 dotenv.config()
 
 const app = express() 
