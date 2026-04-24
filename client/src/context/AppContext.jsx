@@ -7,14 +7,6 @@ export const AppContextProvider = (props) =>{
     const [token, setToken] = useState(localStorage.getItem('token'))
     const [userName, setUserName] = useState(null)
 
-    useEffect(()=>{
-        if(token){
-            console.log(token)
-        } 
-        console.log('No token found')
-    },[token])
-
-
     const value = {
         token,setToken,
         userName, setUserName

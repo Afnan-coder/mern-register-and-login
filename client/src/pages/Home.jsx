@@ -1,9 +1,17 @@
 import React, { useContext } from "react";
 import { AppContext } from "../context/AppContext";
+import { toast, ToastContainer } from "react-toastify";
 
 const Home = () => {
-
+  
   const {token, setToken, userName} = useContext(AppContext)
+
+  const hadleLogout = () =>{
+    localStorage.removeItem('token')
+    toast.error('Logout successfully')
+    setToken(null)
+  }
+
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -11,7 +19,7 @@ const Home = () => {
       {/* Navbar */}
       <div className="bg-white shadow-md px-6 py-4 flex justify-between items-center">
         <h1 className="text-xl font-bold text-gray-800">Welcome! {userName}</h1>
-        <button className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">
+        <button onClick={hadleLogout} className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">
           Logout
         </button>
       </div>
@@ -61,6 +69,7 @@ const Home = () => {
 
         </div>
       </div>
+<ToastContainer/>
     </div>
   );
 };
