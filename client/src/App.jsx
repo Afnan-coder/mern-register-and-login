@@ -5,10 +5,9 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import { useContext } from 'react'
 import { AppContext } from './context/AppContext'
-import { useState } from 'react'
 function App() {
 
-  const [token, setToken] = useState(localStorage.getItem('token'))
+  const { token } = useContext(AppContext)
 
   return (
     <div>

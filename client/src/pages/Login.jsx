@@ -8,7 +8,9 @@ import { AppContext } from '../context/AppContext'
 
 const Login = () => {
 
+
     const navigate = useNavigate()
+    const {token, setToken, setName} = useContext(AppContext)
 
     const [userData, setUserData] = useState({
         email: '',
@@ -32,9 +34,14 @@ const Login = () => {
             const {data} = await axios.post('http://localhost:3000/api/login', userData)
 
             if(data.success){
-                toast.success('Login Success!')
                 localStorage.setItem('token', data.jwtToken)
+                localStorage.setItem('name', data.name)
+                
+                setToken(data.jwtToken)
+                setName(data.name)
                 navigate('/')
+                
+                toast.success('Login Success!')
             } else {
                 toast.error(data.message)
             }

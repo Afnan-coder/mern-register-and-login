@@ -1,15 +1,24 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { AppContext } from "../context/AppContext";
 import { toast, ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   
-  const {token, setToken, userName} = useContext(AppContext)
+  const {token, setToken, name, setName} = useContext(AppContext)
+  const navigate = useNavigate()
 
   const hadleLogout = () =>{
     localStorage.removeItem('token')
+    localStorage.removeItem('name')
+
     toast.error('Logout successfully')
+
     setToken(null)
+    setName(null)
+    
+    // Use navigate instead of window.location
+    navigate('/login')
   }
 
 
@@ -18,7 +27,7 @@ const Home = () => {
 
       {/* Navbar */}
       <div className="bg-white shadow-md px-6 py-4 flex justify-between items-center">
-        <h1 className="text-xl font-bold text-gray-800">Welcome! {userName}</h1>
+        <h1 className="text-xl font-bold text-gray-800">Welcome! {name}</h1>
         <button onClick={hadleLogout} className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">
           Logout
         </button>
