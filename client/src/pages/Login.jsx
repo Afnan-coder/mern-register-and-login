@@ -79,7 +79,7 @@ const Login = () => {
                     />
                 </div>
                 <div>
-                    <button className='w-full py-2 rounded-sm bg-purple-800 text-white' type='submit'>Login</button>
+                    <button className='w-full py-2 rounded-sm bg-purple-800 hover:bg-purple-950 cursor-pointer text-white' type='submit'>Login</button>
                     <div className='mt-3'>
                         <span>Don't have an account!</span>
                         <Link className='text-blue-600 underline ml-2' to={'/register'}>register</Link>

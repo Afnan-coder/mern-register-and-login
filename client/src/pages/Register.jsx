@@ -84,7 +84,7 @@ const Register = () => {
                     />
                 </div>
                 <div>
-                    <button className='w-full py-2 rounded-sm bg-purple-800 text-white' type='submit'>Register</button>
+                    <button className='w-full py-2 hover:bg-purple-950 cursor-pointer rounded-sm bg-purple-800 text-white' type='submit'>Register</button>
                     <div className='mt-3'>
                         <span>Already have an account!</span>
                         <Link className='text-blue-600 underline ml-2' to={'/login'}>Login</Link>
