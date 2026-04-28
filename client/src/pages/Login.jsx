@@ -54,7 +54,7 @@ const Login = () => {
 
     return (
         <div className='w-full h-screen flex items-center justify-center'>
-            <form onSubmit={onSubmitHandler} className='p-8 w-fit max-w-md rounded-2xl flex flex-col gap-9 shadow-[0_20px_50px_rgba(0,0,0,0.9)]'>
+            <form onSubmit={onSubmitHandler} className='p-8 mx-2 md:mx-0 w-fit max-w-md rounded-2xl flex flex-col gap-9 shadow-[0_20px_50px_rgba(0,0,0,0.9)]'>
                 <h1 className='font-bold text-gray-800 text-3xl'>Login</h1>
                 <div className='space-y-6'>
                     <label>Enter email: </label>
