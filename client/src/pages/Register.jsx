@@ -28,7 +28,7 @@ const Register = () => {
         console.log(userData)
         try {
 
-            const { data } = await axios.post('http://localhost:3000/api/register', userData)
+            const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/api/register`, userData)
 
             if (data.success) {
                 toast.success("Data submitted!")
